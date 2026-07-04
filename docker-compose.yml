@@ -1,0 +1,46 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: taisyoga-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${DB_NAME:-taisyoga_db}
+      MYSQL_USER: ${DB_USER:-taisyoga_user}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-taisyoga_password}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "${DB_USER:-taisyoga_user}", "-p${DB_PASSWORD:-taisyoga_password}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: taisyoga-backend
+    restart: always
+    env_file: .env
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    environment:
+      PORT: 8080
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-taisyoga_db}
+      DB_USER: ${DB_USER:-taisyoga_user}
+      DB_PASSWORD: ${DB_PASSWORD:-taisyoga_password}
+      MAIL_USERNAME: ${MAIL_USERNAME}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "8080:8080"
+
+
+volumes:
+  mysql_data:

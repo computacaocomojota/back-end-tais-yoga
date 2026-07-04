@@ -1,0 +1,115 @@
+# ==========================================
+# Maven / Build Output
+# ==========================================
+target/
+build/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# ==========================================
+# Java / Compiled Files & Archives
+# ==========================================
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# Mantém apenas o jar do wrapper do Maven no repositório
+!.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# Logs e Diretórios Temporários
+# ==========================================
+*.log
+logs/
+*.tmp
+*.temp
+
+# ==========================================
+# Variáveis de Ambiente, Chaves e Segredos
+# ==========================================
+.env
+*.env
+*.env.*
+# Garante que o arquivo de exemplo de ambiente suba no GitHub
+!.env.example
+*.pem
+*.key
+*.jks
+*.p12
+*.pfx
+secrets/
+secrets.*
+
+# ==========================================
+# Banco de Dados e Volumes Locais (Docker)
+# ==========================================
+mysql_data/
+docker-data/
+data/
+*.db
+*.sqlite
+
+# ==========================================
+# IDEs e Editores de Texto
+# ==========================================
+### VS Code ###
+.vscode/
+*.code-workspace
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+### Eclipse / Spring Tool Suite (STS) ###
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### Editores Diversos ###
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# ==========================================
+# Sistema Operacional (macOS, Windows, Linux)
+# ==========================================
+### macOS ###
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+### Windows ###
+ehthumbs.db
+Thumbs.db
+
+# ==========================================
+# Ferramentas de IA / Antigravity / Gemini
+# ==========================================
+.agents/
+.gemini/
+skills-lock.json
+*.ai/
+
